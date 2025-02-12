@@ -1,4 +1,5 @@
 import React from 'react';
+import logo from "../assets/logo.png"
 import './Styles/Navbar.css';
 
 const Navbar = () => {
@@ -8,14 +9,14 @@ const Navbar = () => {
         <div className="navbar-left">
           <a href="#" className="navbar-brand">
        
-            <img src="your_logo.png" alt="Logo" className="navbar-logo" /> 
-            <span className="navbar-brand-text">Ticz</span> 
+            <img src={logo} alt="Logo" className="navbar-logo" /> 
+            {/* <span className="navbar-brand-text"></span>  */}
           </a>
         </div>
-        <div className="navbar-right">
+        <div className="navbar-center">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <a href="#" className="nav-link">Ready</a>
+              
             </li>
             <li className="nav-item">
               <a href="#" className="nav-link">Events</a>
@@ -27,7 +28,7 @@ const Navbar = () => {
               <a href="#" className="nav-link">About Project</a>
             </li>
           </ul>
-          <button className="my-tickets-btn">My Tickets →</button>
+          {/* <button className="my-tickets-btn">My Tickets →</button> */}
         </div>
 
 

@@ -4,19 +4,19 @@ import './Styles/AttendeeDetails.css';
 const AttendeeDetails = () => {
   const [profilePhoto, setProfilePhoto] = useState(null);
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('hello@avioflagos.io'); // Pre-filled email
+  const [email, setEmail] = useState(''); 
   const [specialRequest, setSpecialRequest] = useState('');
 
   const handlePhotoUpload = (event) => {
-    // Handle photo upload logic here (e.g., using FileReader or a library)
+    
     const file = event.target.files[0];
     setProfilePhoto(file); 
-    console.log("Uploaded Photo:", file); // Placeholder
+    console.log("Uploaded Photo:", file); 
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Handle form submission logic here (e.g., API call)
+    
     console.log("Form submitted:", { name, email, specialRequest, profilePhoto });
   };
 
@@ -24,7 +24,7 @@ const AttendeeDetails = () => {
     <div className="container">
       <div className="header">
         <h2>Attendee Details</h2>
-        <p>Step 2/3</p>
+        <p className='step'>Step 2/3</p>
       </div>
       <form onSubmit={handleSubmit}>
         <div className="upload-area">
@@ -34,15 +34,15 @@ const AttendeeDetails = () => {
               type="file" 
               id="profilePhoto" 
               onChange={handlePhotoUpload} 
-              style={{ display: 'none' }} // Hide the input
+              style={{ display: 'none' }} 
             />
             <div className="drag-drop-text">
-              <span className="upload-icon"> {/* Add an icon here */}
-                + {/* Placeholder icon */}
+              <span className="upload-icon"> 
+                +
               </span>
               <p>Drag & drop or click to upload</p>
             </div>
-            {profilePhoto && ( // Display a preview if a photo is selected
+            {profilePhoto && (
                 <div className="photo-preview">
                     <img src={URL.createObjectURL(profilePhoto)} alt="Profile Preview" />
                 </div>

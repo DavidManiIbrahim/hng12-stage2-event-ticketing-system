@@ -1,3 +1,4 @@
+import userImg from "../assets/user.img.png"
 import React from 'react';
 import './Styles/TicketConfirmation.css';
 
@@ -17,9 +18,9 @@ const TicketConfirmation = () => {
   return (
     <div className="ticket-confirmation-container">
       <div className="ticket-confirmation-panel">
-        <div className="header">
           <p>Step 3/3</p>
-          <button className="my-tickets-button">MY TICKETS →</button>
+        <div className="header">
+          {/* <button className="my-tickets-button">MY TICKETS →</button> */}
         </div>
         <div className="confirmation-message">
           <h2>Your Ticket is Booked!</h2>
@@ -30,15 +31,15 @@ const TicketConfirmation = () => {
            <div className="event-info">
              <div className="ticket-header">
                <div className="image-container">
-                 {/* Replace with your image component */}
-                 <img src="path/to/your/image.jpg" alt="User Avatar" className="user-avatar" />
+                 
                </div>
-               <h3>{ticketDetails.eventName}</h3>
+               <h3 className="eventHead">{ticketDetails.eventName}</h3>
              </div>
              <div className="location-details">
                <p>{ticketDetails.location}</p>
                <p>{ticketDetails.date} | {ticketDetails.time}</p>
              </div>
+                 <img src={userImg} alt="User Avatar" className="user-avatar" />
            </div>
 
            <div className="user-info">
@@ -54,7 +55,7 @@ const TicketConfirmation = () => {
              <p>{ticketDetails.ticketNumber}</p>
            </div>
            <div className="barcode">
-             {/* Replace with your barcode component or image */}
+             
              <div className="barcode-placeholder">Barcode Here</div>
            </div>
         </div>

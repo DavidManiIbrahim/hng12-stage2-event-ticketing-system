@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import './Styles/TicketSelection.css'; // Import your CSS file
+import './Styles/TicketSelection.css'; 
 
 const TicketSelection = () => {
-  const [selectedTicketType, setSelectedTicketType] = useState('free'); // Default selection
+  const [selectedTicketType, setSelectedTicketType] = useState('free'); 
   const [numTickets, setNumTickets] = useState(1);
 
   const ticketTypes = [
@@ -16,7 +16,7 @@ const TicketSelection = () => {
   };
 
   const handleNumTicketsChange = (event) => {
-    setNumTickets(parseInt(event.target.value, 10) || 1); // Ensure it's a number
+    setNumTickets(parseInt(event.target.value, 10) || 1); 
   };
 
   const selectedTicket = ticketTypes.find(ticket => ticket.type === selectedTicketType);
@@ -24,9 +24,19 @@ const TicketSelection = () => {
   return (
     <div className="ticket-selection-container">
       <div className="ticket-selection-panel">
+
+           <p className='step'>step 1/3</p>
+        <div className="head">
+        <p className='ticket-selection-text'>
+        Ticket Selection 
+      </p>
+        {/* <hr /> */}
+      <div className="line-one"> </div>
+        <div className="line-two"></div>
+        </div>
         <h2 className="event-title">Techember Fest "25</h2>
         <p className="event-description">
-          Join us for an unforgettable experience at [Event Name]! Secure your spot now.
+          Join us for an unforgettable experience at <br /> [Event Name]! Secure your spot now.
         </p>
         <p className="event-details">
           [Event Location] || March 15, 2025 | 7:00 PM
@@ -57,7 +67,7 @@ const TicketSelection = () => {
             value={numTickets}
             onChange={handleNumTicketsChange}
           >
-            {[...Array(10)].map((_, i) => ( // Generate options for 1 to 10 tickets
+            {[...Array(10)].map((_, i) => ( 
               <option key={i + 1} value={i + 1}>
                 {i + 1}
               </option>

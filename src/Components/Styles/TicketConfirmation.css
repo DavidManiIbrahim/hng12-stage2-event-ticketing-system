@@ -6,7 +6,7 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    width: 100%;
+    min-width: 100%;
     background-color: #f0f0f0; 
     font-family: sans-serif;
   }
@@ -19,6 +19,11 @@
     width: 400px; 
   }
   
+.ticket-confirmation-panel ~ p{
+  position: relative;
+  right: 10px;
+}
+
   .header {
     display: flex;
     justify-content: space-between;
@@ -26,9 +31,12 @@
     margin-bottom: 20px;
   }
   
-  /* .my-tickets-button {
-    
-  } */
+   .my-tickets-button {
+   background: #007bff;
+   color: #fff;
+   padding: 8px;
+   border-radius: 20px; 
+  } 
   
   .confirmation-message {
     text-align: center;
@@ -65,8 +73,10 @@
   }
   
   .user-avatar {
-    width: 100%;
-    height: 100%;
+    width: 60%;
+    margin-top: 20px;
+    /* border-radius: 80%; */
+    height: 50%;
     object-fit: cover; 
   }
   
@@ -104,10 +114,27 @@
   }
   
   .book-another-button, .download-ticket-button {
-    border: 1px solid #007bff; 
-
+    border: 1px solid #00b7ff; 
+    font-size: small;
+    width: 50%;
+    
   }
 
+  .book-another-button{
+    width: 60%;
+  }
+  
+.eventHead{
+  font-weight: bolder;
+  position: relative;
+  right: 30px;
+  text-align: center;
+  font-size: 25px;
+}
+
   .download-ticket-button{
+    width: 50%;
     border: 1px solid #007bff; 
+    background: #0bbfd6;
+    color: #fff; 
   }
