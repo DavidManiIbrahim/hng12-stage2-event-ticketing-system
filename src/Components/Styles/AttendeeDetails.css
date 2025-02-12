@@ -1,0 +1,127 @@
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center; 
+    min-height: 100vh; 
+    padding: 50px;
+    min-width: 100%;
+    font-family: sans-serif; 
+    background-color: #f4f4f4; 
+  }
+  
+  .header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .header h2 {
+    color: #333; 
+  }
+  
+  .header p {
+    color: #666; 
+    margin-top: 5px;
+  }
+  
+  form {
+    width: 400px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  }
+  
+  .upload-area {
+    margin-bottom: 20px;
+  }
+  
+  .upload-area label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  .upload-box {
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer; 
+  }
+  
+  .drag-drop-text {
+    text-align: center;
+    color: #666;
+  }
+  
+  .upload-icon {
+    font-size: 2em; 
+    color: #999;
+    margin-bottom: 10px;
+  }
+  
+  .photo-preview {
+    margin-top: 10px;
+  }
+  
+  .photo-preview img {
+    max-width: 100px;
+    height: auto;
+    border-radius: 4px;
+  }
+  
+  .input-group {
+    margin-bottom: 15px;
+  }
+  
+  .input-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  .input-group input,
+  .input-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; 
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: flex-end; 
+    margin-top: 20px;
+  }
+  
+  .buttons button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .back {
+    background-color: #ddd; 
+    color: #333;
+    margin-right: 10px; 
+  }
+  
+  .get-ticket {
+    background-color: #007bff; 
+    color: #fff;
+  }
+  
+ 
+  @media (max-width: 500px) {
+    form {
+      width: 90%; 
+    }
+  }

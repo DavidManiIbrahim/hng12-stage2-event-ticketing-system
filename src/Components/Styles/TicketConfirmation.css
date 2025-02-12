@@ -1,0 +1,113 @@
+
+
+.ticket-confirmation-container {
+    padding: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    background-color: #f0f0f0; 
+    font-family: sans-serif;
+  }
+  
+  .ticket-confirmation-panel {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 400px; 
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  /* .my-tickets-button {
+    
+  } */
+  
+  .confirmation-message {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .ticket-details {
+   
+    border: 1px solid #ccc; 
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+  }
+  
+  .event-info {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    margin-bottom: 20px;
+  }
+  
+  .ticket-header {
+    display: flex;
+    align-items: center; 
+    margin-bottom: 10px;
+  }
+  
+  .image-container {
+    width: 50px; 
+    height: 50px;
+    border-radius: 50%; 
+    overflow: hidden; 
+    margin-right: 10px; 
+  }
+  
+  .user-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+  }
+  
+  .event-info h3 {
+    margin: 0; 
+  }
+  
+  .location-details {
+    text-align: center; 
+  }
+  
+  .user-info, .type-details {
+    margin-bottom: 10px;
+  }
+  
+  .ticket-number {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .barcode {
+    text-align: center;
+  }
+  
+  .barcode-placeholder {
+    width: 200px;
+    height: 50px;
+    background-color: #eee;
+    margin: 0 auto;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .book-another-button, .download-ticket-button {
+    border: 1px solid #007bff; 
+
+  }
+
+  .download-ticket-button{
+    border: 1px solid #007bff; 
+  }
