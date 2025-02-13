@@ -1,4 +1,4 @@
-import userImg from "../assets/user.img.png"
+import userImg from "../assets/User.img.png"
 import React from 'react';
 import './Styles/TicketConfirmation.css';
 
