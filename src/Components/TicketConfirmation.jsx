@@ -1,85 +1,126 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';  // Import useNavigate hook for navigation
+import { useNavigate } from 'react-router-dom';
 import './Styles/TicketConfirmation.css';
 import { jsPDF } from 'jspdf';
+import JsBarcode from 'jsbarcode';
 
 const TicketConfirmation = () => {
-  const [userPhoto, setUserPhoto] = useState(null); // State for storing user photo
+  const [userPhoto, setUserPhoto] = useState(null);
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [numTickets, setNumTickets] = useState(1);
-  const [ticketType, setTicketType] = useState('');  // State for storing the ticket type
+  const [ticketType, setTicketType] = useState('');
+  const [specialRequests, setSpecialRequests] = useState('');
+  const [barcodeImage, setBarcodeImage] = useState('');
+  const [ticketNumber, setTicketNumber] = useState('');
 
-  // Initialize navigate hook for navigation
   const navigate = useNavigate();
 
-  // Fetch the user details (name, email, and photo) and ticket type from localStorage
+  const generateTicketNumber = () => {
+    const randomNumber = Math.floor(100000 + Math.random() * 900000);
+    return `TECH${randomNumber}`;
+  };
+
   useEffect(() => {
     const storedPhotoUrl = localStorage.getItem('profilePhoto');
-    const storedName = localStorage.getItem('name'); // Make sure this key matches with the one used in AttendeeDetails
-    const storedEmail = localStorage.getItem('email'); // Make sure this key matches with the one used in AttendeeDetails
-    const storedTicketType = localStorage.getItem('ticketType');  // Fetch the ticket type from localStorage
+    const storedName = localStorage.getItem('name');
+    const storedEmail = localStorage.getItem('email');
+    const storedTicketType = localStorage.getItem('ticketType');
+    const storedSpecialRequests = localStorage.getItem('specialRequests');
     
-    if (storedName) setUserName(storedName);  // Set the user name from localStorage
-    if (storedEmail) setUserEmail(storedEmail); // Set the user email from localStorage
+    if (storedName) setUserName(storedName);
+    if (storedEmail) setUserEmail(storedEmail);
+    if (storedPhotoUrl) setUserPhoto(storedPhotoUrl);
     
-    // Set the profile photo URL from localStorage
-    if (storedPhotoUrl) {
-      setUserPhoto(storedPhotoUrl);  // Set the user photo from localStorage
-    }
-
     const storedNumTickets = localStorage.getItem('numTickets');
     if (storedNumTickets) {
-      setNumTickets(Number(storedNumTickets)); // Set the number of tickets
+      setNumTickets(Number(storedNumTickets));
     }
 
-    // Set the ticket type from localStorage
     if (storedTicketType) {
-      setTicketType(storedTicketType);  // Set the ticket type from localStorage
+      setTicketType(storedTicketType);
     }
 
-  }, []); // Empty dependency array means this will only run once when the component is mounted
+    if (storedSpecialRequests) {
+      setSpecialRequests(storedSpecialRequests);
+    }
+
+    const newTicketNumber = generateTicketNumber();
+    setTicketNumber(newTicketNumber);
+
+    const canvas = document.createElement('canvas');
+    JsBarcode(canvas, newTicketNumber, {
+      format: 'CODE128',
+      displayValue: true,
+      fontSize: 16,
+      height: 40,
+    });
+    setBarcodeImage(canvas.toDataURL());
+  }, []);
 
   const ticketDetails = {
     eventName: 'Techember Fest "25',
-    location: '04 menms rood, Ikoy, Lagos',
+    location: '04 Rumens Road, Ikoyi, Lagos',
     date: 'March 15, 2025',
     time: '7:00 PM',
-    ticketType: ticketType || 'VIP', // Use the ticket type from localStorage or fallback to 'VIP'
-    specialRequests: 'NE 7 Or the users sad story they write in thers gets the whole space, Max of three rows',
-    ticketNumber: '234567 891026',
+    ticketType: ticketType || 'VIP',
+    ticketNumber: ticketNumber,
   };
 
   const handleDownloadTicket = () => {
-    const doc = new jsPDF();
+    const doc = new jsPDF({
+      orientation: 'portrait',
+      unit: 'mm',
+      format: [80, 150],
+    });
 
-    // Ticket Details Text
-    doc.setFontSize(16);
-    doc.text(ticketDetails.eventName, 20, 30);
+    doc.setFont('helvetica');
+
+    const pageWidth = doc.internal.pageSize.getWidth();
+
+    doc.setFontSize(18);
+    doc.setTextColor(0, 0, 0);
+    const eventNameWidth = doc.getTextWidth(ticketDetails.eventName);
+    doc.text(ticketDetails.eventName, (pageWidth - eventNameWidth) / 2, 15);
+
     doc.setFontSize(12);
-    doc.text(`${ticketDetails.location}`, 20, 40);
-    doc.text(`${ticketDetails.date} | ${ticketDetails.time}`, 20, 50);
+    const locationWidth = doc.getTextWidth(ticketDetails.location);
+    doc.text(ticketDetails.location, (pageWidth - locationWidth) / 2, 25);
 
-    // User Info
-    doc.text(`Name: ${userName}`, 20, 60);
-    doc.text(`Email: ${userEmail}`, 20, 70);
+    const dateTimeText = `${ticketDetails.date} | ${ticketDetails.time}`;
+    const dateTimeWidth = doc.getTextWidth(dateTimeText);
+    doc.text(dateTimeText, (pageWidth - dateTimeWidth) / 2, 32);
 
-    // Ticket Type and Number
-    doc.text(`${ticketDetails.ticketType} - ${numTickets} ${numTickets > 1 ? 'Tickets' : 'Ticket'}`, 20, 80);
+    if (userPhoto) {
+      const imgWidth = 40;
+      const imgHeight = 40;
+      const imgX = (pageWidth - imgWidth) / 2;
+      doc.addImage(userPhoto, 'JPEG', imgX, 40, imgWidth, imgHeight);
+    }
 
-    // Special Requests
-    doc.text(`Special Requests: ${ticketDetails.specialRequests}`, 20, 90);
+    doc.setFontSize(12);
+    doc.text(`Name: ${userName}`, 10, 90);
+    doc.text(`Email: ${userEmail}`, 10, 96);
 
-    // Ticket Number
-    doc.text(`Ticket Number: ${ticketDetails.ticketNumber}`, 20, 100);
+    doc.text(`Ticket Type: ${ticketDetails.ticketType}`, 10, 106);
+    doc.text(`Number of Tickets: ${numTickets}`, 10, 112);
 
-    // Save the PDF
+    if (specialRequests) {
+      doc.text(`Special Requests: ${specialRequests}`, 10, 122);
+    }
+
+    doc.setFontSize(14);
+    doc.text(`Ticket Number: ${ticketDetails.ticketNumber}`, 10, 132);
+
+    if (barcodeImage) {
+      doc.addImage(barcodeImage, 'PNG', 10, 140, 60, 20);
+    }
+
     doc.save('ticket.pdf');
   };
 
-  // Handle "Book Another Ticket" navigation
   const handleBookAnotherTicket = () => {
-    navigate('/'); // Navigate to the event page where the user can book another ticket
+    navigate('/');
   };
 
   return (
@@ -108,21 +149,41 @@ const TicketConfirmation = () => {
           </div>
 
           <div className="user-info">
-            <p>{userName}</p>
-            <p>{userEmail}</p>
+            <p>
+              <span>Name:</span> <br />
+              {userName}
+            </p>
+            <p>
+              <span>Email:</span> <br />
+              {userEmail}
+            </p>
           </div>
 
           <div className="type-details">
-            <p>{ticketDetails.ticketType}</p>
             <p>
+              <span>Ticket Type:</span> <br />
+              {ticketDetails.ticketType}
+            </p>
+            <p>
+              <span>No of Tickets:</span> <br />
               {numTickets} {numTickets > 1 ? 'Tickets' : 'Ticket'}
             </p>
           </div>
 
-          <p>{ticketDetails.specialRequests}</p>
+          {specialRequests && (
+            <div className="special-requests">
+              <p><strong>Special Requests:</strong> <br />{specialRequests}</p><hr />
+            </div>
+          )}
 
           <div className="ticket-number">
-            <p>{ticketDetails.ticketNumber}</p>
+            <p>Ticket Number: {ticketDetails.ticketNumber}</p>
+          </div>
+
+          <div className="barcode-section">
+            {barcodeImage && (
+              <img src={barcodeImage} alt="Barcode" className="barcode-image" />
+            )}
           </div>
         </div>
 

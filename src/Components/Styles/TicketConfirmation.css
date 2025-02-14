@@ -28,6 +28,16 @@
   right: 10px;
 }
 
+.barcode-section {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.barcode-image {
+  width: 180px;
+  height: 40px;
+}
+
   .header {
     display: flex;
     justify-content: space-between;
@@ -93,13 +103,20 @@
   }
   
   .user-info, .type-details {
-    border-bottom: 1px solid;
+    border-bottom: 1px solid gray;
     /* margin-bottom: 10px; */
     display: flex;
     justify-content: space-around;
     /* gap: 100px; */
     /* align-items: center; */
+
+    span{
+      font-weight: bold;
+
+    }
   }
+
+
   
   .ticket-number {
     text-align: center;
