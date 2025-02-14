@@ -6,8 +6,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
   min-height: 100vh; 
-  background-image: linear-gradient(to bottom, #020a2c, #1f6bb2);
+  /* background-image: linear-gradient(to bottom, #020a2c, #1f6bb2); */
   /* background-color: #f0f0f0;  */
   font-family: sans-serif;
 }
@@ -39,6 +40,7 @@
 
 .ticket-types {
   display: flex;
+  flex-direction: column;
   gap: 20px;
   justify-content: space-between;
   margin-bottom: 20px;
@@ -109,4 +111,18 @@ select, #numTickets{
 .next-button {
   background-color: #007bff;
   color: #fff;
+}
+
+@media (min-width: 500px) {
+  .ticket-types {
+    flex-direction: row;
+  }
+  
+  .ticket-type{
+    align-items: center;
+    width: 50%;
+    justify-content: center;
+    margin: 10px auto;
+
+  }
 }

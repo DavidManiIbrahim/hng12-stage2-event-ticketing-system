@@ -67,7 +67,7 @@ const TicketSelection = () => {
             value={numTickets}
             onChange={handleNumTicketsChange}
           >
-            {[...Array(10)].map((_, i) => ( 
+            {[...Array(5)].map((_, i) => ( 
               <option key={i + 1} value={i + 1}>
                 {i + 1}
               </option>

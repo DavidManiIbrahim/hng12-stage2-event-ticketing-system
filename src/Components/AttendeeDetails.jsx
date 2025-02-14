@@ -22,12 +22,12 @@ const AttendeeDetails = () => {
 
   return (
     <div className="container">
+      <form onSubmit={handleSubmit}>
+        <div className="upload-area">
       <div className="header">
         <h2>Attendee Details</h2>
         <p className='step'>Step 2/3</p>
       </div>
-      <form onSubmit={handleSubmit}>
-        <div className="upload-area">
           <label htmlFor="profilePhoto">Upload Profile Photo</label>
           <div className="upload-box">
             <input 

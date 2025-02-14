@@ -8,8 +8,9 @@
     min-height: 100vh; 
     padding: 50px;
     min-width: 100%;
+    color: #fff;
     font-family: sans-serif; 
-    background-color: #f4f4f4; 
+    /* background-color: #f4f4f4;  */
   }
   
   .header {
@@ -21,7 +22,7 @@
   
   .header h2 {
     color: #333;
-    margin-right: 200px;
+    /* margin-right: 200px; */
   }
   
   .header p {
