@@ -1,4 +1,4 @@
-import userImg from "../assets/user.img.png"
+
 import React from 'react';
 import './Styles/TicketConfirmation.css';
 
@@ -39,7 +39,7 @@ const TicketConfirmation = () => {
                <p>{ticketDetails.location}</p>
                <p>{ticketDetails.date} | {ticketDetails.time}</p>
              </div>
-                 <img src={userImg} alt="User Avatar" className="user-avatar" />
+                 <img src="" alt="User Avatar" className="user-avatar" />
            </div>
 
            <div className="user-info">

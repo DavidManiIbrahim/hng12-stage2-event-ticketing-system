@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router-dom"
 import AttendeeDetails from './Components/AttendeeDetails';
 import TicketConfirmation from './Components/TicketConfirmation';
 import Navbar from './Components/Navbar';
+import AboutProject from './Components/AboutProject';
 
 function App() {
   return (
@@ -12,12 +13,11 @@ function App() {
       <Navbar />
       <Routes>
         <Route path='/' element={<TicketSelection />} />
-        {/* <Route path='/tickets' element={} /> */}
-        {/* <Route path='/about-project' element={} /> */}
+        <Route path='/tickets' element={<TicketConfirmation />} />
+        <Route path='/about-project' element={<AboutProject />} />
+        <Route path='/details' element={<AttendeeDetails />} />
       </Routes>
-      {/* <TicketSelection /> */}
-      {/* <AttendeeDetails /> */}
-      {/* <TicketConfirmation /> */}
+   
     </div>
   );
 }
