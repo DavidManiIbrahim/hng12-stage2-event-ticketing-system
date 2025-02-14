@@ -26,7 +26,7 @@ const Navbar = () => {
               <Link to="/tickets" className="nav-link">My Tickets</Link>
             </li>
             <li className="nav-item">
-              <Link to="/about" className="nav-link">About Project</Link>
+              <Link to="/about-project" className="nav-link">About Project</Link>
             </li>
           </ul>
           {/* <button className="my-tickets-btn">My Tickets →</button> */}

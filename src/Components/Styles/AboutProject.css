@@ -1,0 +1,97 @@
+/* AboutProject.css */
+.about-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    background-color: #0f172a;
+    color: white;
+    min-height: 100vh;
+  }
+  
+  .about-content {
+    max-width: 800px;
+    background: #1e293b;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  h1, h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .about-description {
+    text-align: center;
+    font-size: 1.1rem;
+    line-height: 1.5;
+  }
+  
+  .about-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .about-list li {
+    background: #334155;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+  }
+  
+  .about-enjoy {
+    text-align: center;
+    font-size: 1.5rem;
+    margin: 20px 0;
+  }
+  
+  .about-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .design-button, .github-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .design-button {
+    background: #2563eb;
+    color: white;
+  }
+  
+  .github-button {
+    background: #16a34a;
+    color: white;
+  }
+  
+  .design-button:hover {
+    background: #1d4ed8;
+  }
+  
+  .github-button:hover {
+    background: #15803d;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .about-content {
+      width: 90%;
+      padding: 20px;
+    }
+  
+    .about-description {
+      font-size: 1rem;
+    }
+  
+    .about-list li {
+      font-size: 0.95rem;
+    }
+  }
+  
