@@ -14,10 +14,13 @@ const TicketSelection = () => {
     { type: 'vvip', label: 'VVIP Access', price: 250, availability: 20 },
   ];
 
+
+  
   useEffect(() => {
     const storedTicketType = localStorage.getItem('ticketType');
     const storedNumTickets = localStorage.getItem('numTickets');
-    
+      
+
     if (storedTicketType) {
       setSelectedTicketType(storedTicketType);
     }
@@ -81,7 +84,7 @@ const TicketSelection = () => {
                 {ticket.price > 0 ? `$${ticket.price}` : 'Free'}
               </div>
               <div className="ticket-availability">
-                {ticket.availability}/{52}
+                {ticket.availability}/{20}
               </div>
             </div>
           ))}

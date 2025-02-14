@@ -22,28 +22,26 @@ const TicketConfirmation = () => {
   };
 
   useEffect(() => {
+    const getStoredSpecialRequests = localStorage.getItem('specialRequests');
+    console.log('Special Requests from localStorage:', storedSpecialRequests);
+  
+    if (storedSpecialRequests) setSpecialRequests(storedSpecialRequests);
+  }, []);
+  
+  useEffect(() => {
     const storedPhotoUrl = localStorage.getItem('profilePhoto');
     const storedName = localStorage.getItem('name');
     const storedEmail = localStorage.getItem('email');
     const storedTicketType = localStorage.getItem('ticketType');
     const storedSpecialRequests = localStorage.getItem('specialRequests');
-    
+    const storedNumTickets = localStorage.getItem('numTickets');
+
     if (storedName) setUserName(storedName);
     if (storedEmail) setUserEmail(storedEmail);
     if (storedPhotoUrl) setUserPhoto(storedPhotoUrl);
-    
-    const storedNumTickets = localStorage.getItem('numTickets');
-    if (storedNumTickets) {
-      setNumTickets(Number(storedNumTickets));
-    }
-
-    if (storedTicketType) {
-      setTicketType(storedTicketType);
-    }
-
-    if (storedSpecialRequests) {
-      setSpecialRequests(storedSpecialRequests);
-    }
+    if (storedTicketType) setTicketType(storedTicketType);
+    if (storedSpecialRequests) setSpecialRequests(storedSpecialRequests);
+    if (storedNumTickets) setNumTickets(Number(storedNumTickets));
 
     const newTicketNumber = generateTicketNumber();
     setTicketNumber(newTicketNumber);
@@ -172,13 +170,12 @@ const TicketConfirmation = () => {
 
           {specialRequests && (
             <div className="special-requests">
-              <p><strong>Special Requests:</strong> <br />{specialRequests}</p><hr />
+              <p><strong>Special Requests:</strong> <br />{getStoredSpecialRequests}</p>
+              <hr />
             </div>
           )}
 
-          <div className="ticket-number">
-            <p>Ticket Number: {ticketDetails.ticketNumber}</p>
-          </div>
+      
 
           <div className="barcode-section">
             {barcodeImage && (
