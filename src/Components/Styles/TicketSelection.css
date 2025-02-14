@@ -118,10 +118,7 @@ select, #numTickets{
 }
 
 @media (min-width: 500px) {
-  .ticket-types {
-    flex-direction: row;
-  }
-  
+
   .ticket-type{
     align-items: center;
     width: 50%;
