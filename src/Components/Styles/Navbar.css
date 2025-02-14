@@ -48,12 +48,12 @@
     align-items: center;
     text-align: center;
     justify-content: center;
-    margin-right: 40%;
+    /* margin-right: 0%; */
   }
   
   .navbar-nav {
     list-style: none;
-    margin: 0;
+    margin: 0 auto;
     align-items: center;
     /* justify-content: center; */
     /* padding: 0; */
@@ -75,20 +75,21 @@
   }
   
   .my-tickets-btn {
-    background-color: transparent; 
-    color: white;
+    background-color: white; 
+    color: #1f2937; 
+    float: right;
+    align-content: end;
     border: 1px solid white;
     padding: 0.5rem 1rem;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
+    /* transition: background-color 0.3s, color 0.3s; */
     margin-left: 20px;
   }
   
-  .my-tickets-btn:hover {
+  /* .my-tickets-btn:hover {
     background-color: white;
-    color: #1f2937; 
-  }
+  } */
   
 
   .navbar-toggle {
@@ -113,7 +114,7 @@
   @media (max-width: 768px) { 
     .navbar{
       margin:10px;
-    
+      width: 85%;
     }
     .navbar-nav {
       display: none;  
@@ -147,6 +148,7 @@
   
     .my-tickets-btn {
       margin: 10px 0; 
+      display: none;
       margin-left: 0;
       width: 100%;
     }

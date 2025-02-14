@@ -8,10 +8,14 @@
     min-height: 100vh; 
     padding: 50px;
     min-width: 100%;
-    color: #fff;
+    /* color: #fff; */
     font-family: sans-serif; 
     /* background-color: #f4f4f4;  */
   }
+
+.error-message{
+  color: red;
+}
   
   .header {
     justify-content: space-between;

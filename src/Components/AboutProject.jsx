@@ -14,10 +14,12 @@ const AboutProject = () => {
         </p>
 
         <h2>Flow & Features</h2>
+        <h3>Ticket Selection</h3>
         <ul className="about-list">
-          <li>✅ Ticket Selection: Browse available tickets (Free & Paid).</li>
-          <li>✅ Attendee Details Form: Enter name, email & upload profile photo.</li>
-          <li>✅ Payment & Confirmation: Integrated with Stripe, Paystack, or Flutterwave.</li>
+          <li>Users can browse available tickets (Free & Paid).</li>
+          <li>Ticket options are displayed in a list or card view</li>
+          <li>For Free Tickets Clicking "Get Free Ticket" Proceeds to attendee details</li>
+          <li>For Paid Tickets Clicking "Purchase Ticket" Proceeds to attendee details</li>
         </ul>
 
         <h2>Tech Stack</h2>

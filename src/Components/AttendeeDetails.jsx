@@ -5,8 +5,8 @@ import './Styles/AttendeeDetails.css';
 
 const AttendeeDetails = () => {
   const navigate = useNavigate();
-  
-  // Load saved data from local storage
+
+
   const [profilePhoto, setProfilePhoto] = useState(localStorage.getItem('profilePhoto') || null);
   const [name, setName] = useState(localStorage.getItem('name') || '');
   const [email, setEmail] = useState(localStorage.getItem('email') || '');
@@ -14,7 +14,7 @@ const AttendeeDetails = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  // Load image preview if it exists in localStorage
+
   useEffect(() => {
     const savedPhoto = localStorage.getItem('profilePhoto');
     if (savedPhoto) {
@@ -75,14 +75,13 @@ const AttendeeDetails = () => {
 
   return (
     <div className="container">
+      
       <form onSubmit={handleSubmit}>
         <div className="upload-area">
       <div className="header">
         <h2>Attendee Details</h2>
         <p className="step">Step 2/3</p>
       </div>
-      <form onSubmit={handleSubmit}>
-        <div className="upload-area">
           <label>Upload Profile Photo</label>
           <div className="upload-box" onClick={handleBoxClick}>
             <input 
@@ -140,8 +139,8 @@ const AttendeeDetails = () => {
           <button type="button" className="back" onClick={() => navigate('/')}>
             Back
           </button>
-          <button type="submit" className="get-ticket">
-            Get My Free Ticket
+          <button type="submit" className="get-ticket" disabled={loading}>
+            {loading ? 'Processing...' : 'Get My Free Ticket'}
           </button>
         </div>
       </form>

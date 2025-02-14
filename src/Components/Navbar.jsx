@@ -29,8 +29,8 @@ const Navbar = () => {
               <Link to="/about-project" className="nav-link">About Project</Link>
             </li>
           </ul>
-          {/* <button className="my-tickets-btn">My Tickets →</button> */}
         </div>
+          <button className="my-tickets-btn">My Tickets →</button>
 
 
         <div className="navbar-toggle">

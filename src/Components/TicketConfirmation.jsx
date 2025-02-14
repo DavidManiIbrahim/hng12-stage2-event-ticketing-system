@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import './Styles/TicketConfirmation.css';
-import { jsPDF } from 'jspdf';
-import QRCode from 'react-qr-code';
+// import { jsPDF } from 'jspdf';
+// import QRCode from 'react-qr-code';
 
 const TicketConfirmation = () => {
   const [userPhoto, setUserPhoto] = useState(null);
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
-  const [numTickets, setNumTickets] = useState(1); // State to store the number of tickets
+  const [numTickets, setNumTickets] = useState(1); 
 
   useEffect(() => {
-    // Load the user's profile photo, name, and email from localStorage
+
     const storedPhoto = localStorage.getItem('profilePhoto');
     const storedName = localStorage.getItem('userName');
     const storedEmail = localStorage.getItem('userEmail');
@@ -19,10 +19,10 @@ const TicketConfirmation = () => {
     if (storedName) setUserName(storedName);
     if (storedEmail) setUserEmail(storedEmail);
 
-    // Load the number of tickets from localStorage
+
     const storedNumTickets = localStorage.getItem('numTickets');
     if (storedNumTickets) {
-      setNumTickets(Number(storedNumTickets)); // Set the number of tickets
+      setNumTickets(Number(storedNumTickets)); 
     }
   }, []);
 
@@ -39,31 +39,31 @@ const TicketConfirmation = () => {
   const handleDownloadTicket = () => {
     const doc = new jsPDF();
     
-    // Add event name and details
+
     doc.setFontSize(16);
     doc.text(ticketDetails.eventName, 20, 30);
     doc.setFontSize(12);
     doc.text(`${ticketDetails.location}`, 20, 40);
     doc.text(`${ticketDetails.date} | ${ticketDetails.time}`, 20, 50);
 
-    // User details
+
     doc.text(`Name: ${userName}`, 20, 60);
     doc.text(`Email: ${userEmail}`, 20, 70);
 
-    // Ticket Type and Quantity
+
     doc.text(`${ticketDetails.ticketType} - ${numTickets} ${numTickets > 1 ? 'Tickets' : 'Ticket'}`, 20, 80);
 
-    // Special requests
+  
     doc.text(`Special Requests: ${ticketDetails.specialRequests}`, 20, 90);
 
-    // Ticket Number
+ 
     doc.text(`Ticket Number: ${ticketDetails.ticketNumber}`, 20, 100);
 
-    // Barcode (QR code)
-    const barcodeData = `TicketNumber: ${ticketDetails.ticketNumber}`;
-    doc.addImage(<QRCode value={barcodeData} size={80} />, 'PNG', 20, 110, 40, 40);
 
-    // Save the PDF
+    const barcodeData = `TicketNumber: ${ticketDetails.ticketNumber}`;
+    doc.addImage(<QRCode value={barcodeData} size={80} />, 'PNG', 20, 10, 40, 40);
+
+
     doc.save('ticket.pdf');
   };
 
