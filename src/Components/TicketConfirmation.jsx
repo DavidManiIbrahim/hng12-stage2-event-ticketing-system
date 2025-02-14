@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 
+=======
+import userImg from "../assets/User.img.png"
+>>>>>>> 6b5810317270f93bcefecb7917ef5e3f7b17fcb5
 import React from 'react';
 import './Styles/TicketConfirmation.css';
 
