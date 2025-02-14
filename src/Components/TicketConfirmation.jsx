@@ -21,12 +21,7 @@ const TicketConfirmation = () => {
     return `TECH${randomNumber}`;
   };
 
-  useEffect(() => {
-    const getStoredSpecialRequests = localStorage.getItem('specialRequests');
-    console.log('Special Requests from localStorage:', getStoredSpecialRequests);
 
-    if (getStoredSpecialRequests) setSpecialRequests(getStoredSpecialRequests);
-  }, []);
   
   useEffect(() => {
     const storedPhotoUrl = localStorage.getItem('profilePhoto');
