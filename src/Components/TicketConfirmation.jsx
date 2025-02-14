@@ -1,24 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import './Styles/TicketConfirmation.css';
-// import { jsPDF } from 'jspdf';
-// import QRCode from 'react-qr-code';
+import { jsPDF } from 'jspdf';
 
 const TicketConfirmation = () => {
-  const [userPhoto, setUserPhoto] = useState(null);
+  const [userPhoto, setUserPhoto] = useState(null); // The state for storing user photo
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
-  const [numTickets, setNumTickets] = useState(1); 
+  const [numTickets, setNumTickets] = useState(1);
 
+  // Fetch the image from the API (Cloudinary or your API) and set it in the state
   useEffect(() => {
-
-    const storedPhoto = localStorage.getItem('profilePhoto');
+    const storedPhotoUrl = localStorage.getItem('profilePhoto');
     const storedName = localStorage.getItem('userName');
     const storedEmail = localStorage.getItem('userEmail');
-
-    if (storedPhoto) setUserPhoto(storedPhoto);
+    
     if (storedName) setUserName(storedName);
     if (storedEmail) setUserEmail(storedEmail);
-
+    
+    // Fetching the profile photo URL from localStorage and setting it to state
+    if (storedPhotoUrl) {
+      // You can fetch the image from the API using the URL stored in localStorage if needed
+      setUserPhoto(storedPhotoUrl);
+    }
 
     const storedNumTickets = localStorage.getItem('numTickets');
     if (storedNumTickets) {
@@ -36,34 +39,31 @@ const TicketConfirmation = () => {
     ticketNumber: '234567 891026',
   };
 
+  // Download PDF with ticket details
   const handleDownloadTicket = () => {
     const doc = new jsPDF();
-    
 
+    // Ticket Details Text
     doc.setFontSize(16);
     doc.text(ticketDetails.eventName, 20, 30);
     doc.setFontSize(12);
     doc.text(`${ticketDetails.location}`, 20, 40);
     doc.text(`${ticketDetails.date} | ${ticketDetails.time}`, 20, 50);
 
-
+    // User Info
     doc.text(`Name: ${userName}`, 20, 60);
     doc.text(`Email: ${userEmail}`, 20, 70);
 
-
+    // Ticket Type and Number
     doc.text(`${ticketDetails.ticketType} - ${numTickets} ${numTickets > 1 ? 'Tickets' : 'Ticket'}`, 20, 80);
 
-  
+    // Special Requests
     doc.text(`Special Requests: ${ticketDetails.specialRequests}`, 20, 90);
 
- 
+    // Ticket Number
     doc.text(`Ticket Number: ${ticketDetails.ticketNumber}`, 20, 100);
 
-
-    const barcodeData = `TicketNumber: ${ticketDetails.ticketNumber}`;
-    doc.addImage(<QRCode value={barcodeData} size={80} />, 'PNG', 20, 10, 40, 40);
-
-
+    // Save the PDF
     doc.save('ticket.pdf');
   };
 
@@ -108,10 +108,6 @@ const TicketConfirmation = () => {
 
           <div className="ticket-number">
             <p>{ticketDetails.ticketNumber}</p>
-          </div>
-
-          <div className="barcode">
-            <QRCode value={`TicketNumber: ${ticketDetails.ticketNumber}`} size={80} />
           </div>
         </div>
 
