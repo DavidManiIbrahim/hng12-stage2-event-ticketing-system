@@ -13,11 +13,12 @@ function App() {
       <Navbar />
       <Routes>
         <Route path='/' element={<TicketSelection />} />
-        <Route path='/tickets' element={<TicketConfirmation />} />
         <Route path='/about-project' element={<AboutProject />} />
         <Route path='/details' element={<AttendeeDetails />} />
+        <Route path='/tickets' element={<TicketConfirmation />} />
       </Routes>
    
+   {/* <TicketConfirmation /> */}
     </div>
   );
 }

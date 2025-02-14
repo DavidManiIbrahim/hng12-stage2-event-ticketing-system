@@ -55,7 +55,7 @@
     color: #333;
   }
   
-  .upload-box {
+  /* .upload-box {
     border: 2px dashed #ccc;
     border-radius: 8px;
     padding: 20px;
@@ -63,8 +63,28 @@
     flex-direction: column;
     align-items: center;
     cursor: pointer; 
+  } */
+  
+  .upload-box {
+    position: relative;
+    width: 100%;
+    height: 200px; 
+    border: 2px dashed #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
   }
   
+  .preview-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; 
+    border-radius: 5px; 
+  }
+  
+
+
   .drag-drop-text {
     text-align: center;
     color: #666;
