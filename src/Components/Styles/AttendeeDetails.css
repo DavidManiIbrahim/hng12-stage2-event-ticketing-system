@@ -11,9 +11,7 @@
     position: relative;
     top: 80px;
     font-family: sans-serif; 
-    /* padding: 30px; */
-    /* color: #fff; */
-    /* background-color: #f4f4f4;  */
+ 
   }
 
 .error-message{
@@ -29,7 +27,7 @@
   
   .header h2 {
     color: #333;
-    /* margin-right: 200px; */
+  
   }
   
   .header p {
@@ -55,15 +53,7 @@
     color: #333;
   }
   
-  /* .upload-box {
-    border: 2px dashed #ccc;
-    border-radius: 8px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer; 
-  } */
+
   
   .upload-box {
     position: relative;

@@ -1,4 +1,4 @@
-/* AboutProject.css */
+
 .about-container {
     display: flex;
     justify-content: center;
@@ -79,7 +79,7 @@
     background: #15803d;
   }
   
-  /* Responsive Design */
+
   @media (max-width: 768px) {
     .about-content {
       width: 90%;

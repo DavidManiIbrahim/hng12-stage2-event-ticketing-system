@@ -11,7 +11,7 @@
     align-items: center;
     min-height: 100vh;
     min-width: 100%;
-    /* background-color: #f0f0f0;  */
+ 
     font-family: sans-serif;
   }
   
@@ -81,7 +81,6 @@
   .image-container {
     width: 100%; 
     height: 100%;
-    /* border-radius: 100%; */
     overflow: hidden; 
     margin-right: 10px; 
   }
@@ -89,7 +88,7 @@
   .user-avatar {
     width: 60%;
     margin-top: 20px;
-    /* border-radius: 80%; */
+
     height: 50%;
     object-fit: cover; 
   }
@@ -104,11 +103,9 @@
   
   .user-info, .type-details {
     border-bottom: 1px solid gray;
-    /* margin-bottom: 10px; */
     display: flex;
     justify-content: space-around;
-    /* gap: 100px; */
-    /* align-items: center; */
+ 
 
     span{
       font-weight: bold;

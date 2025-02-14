@@ -48,15 +48,14 @@
     align-items: center;
     text-align: center;
     justify-content: center;
-    /* margin-right: 0%; */
+    
   }
   
   .navbar-nav {
     list-style: none;
     margin: 0 auto;
     align-items: center;
-    /* justify-content: center; */
-    /* padding: 0; */
+
     display: flex;
   }
   
@@ -83,13 +82,11 @@
     padding: 0.5rem 1rem;
     border-radius: 5px;
     cursor: pointer;
-    /* transition: background-color 0.3s, color 0.3s; */
+
     margin-left: 20px;
   }
   
-  /* .my-tickets-btn:hover {
-    background-color: white;
-  } */
+
   
 
   .navbar-toggle {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; 
-import './Styles/TicketSelection.css'; 
+import { useNavigate } from 'react-router-dom';
+import './Styles/TicketSelection.css';
 
 const TicketSelection = () => {
   const [selectedTicketType, setSelectedTicketType] = useState('free');
@@ -14,7 +14,6 @@ const TicketSelection = () => {
     { type: 'vvip', label: 'VVIP Access', price: 250, availability: 20 },
   ];
 
-  // Load previously selected ticket type and number of tickets from localStorage
   useEffect(() => {
     const storedTicketType = localStorage.getItem('ticketType');
     const storedNumTickets = localStorage.getItem('numTickets');
@@ -28,14 +27,12 @@ const TicketSelection = () => {
     }
   }, []);
 
-  // Handle ticket type selection
   const handleTicketTypeChange = (type) => {
     setSelectedTicketType(type);
-    localStorage.setItem('ticketType', type); // Save ticket type to localStorage
+    localStorage.setItem('ticketType', type);
     setError('');
   };
 
-  // Handle number of tickets change
   const handleNumTicketsChange = (event) => {
     const value = parseInt(event.target.value, 10) || 0;
     setNumTickets(value);
@@ -43,17 +40,16 @@ const TicketSelection = () => {
       setError('Please select at least one ticket.');
     } else {
       setError('');
-      localStorage.setItem('numTickets', value); // Save number of tickets to localStorage
+      localStorage.setItem('numTickets', value);
     }
   };
 
-  // Handle next button click
   const handleNextClick = () => {
     if (numTickets < 1) {
       setError('Please select at least one ticket.');
       return;
     }
-    navigate('/details'); // Navigate to the next step
+    navigate('/details');
   };
 
   return (
