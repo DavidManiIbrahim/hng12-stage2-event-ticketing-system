@@ -23,9 +23,9 @@ const TicketConfirmation = () => {
 
   useEffect(() => {
     const getStoredSpecialRequests = localStorage.getItem('specialRequests');
-    console.log('Special Requests from localStorage:', storedSpecialRequests);
-  
-    if (storedSpecialRequests) setSpecialRequests(storedSpecialRequests);
+    console.log('Special Requests from localStorage:', getStoredSpecialRequests);
+
+    if (getStoredSpecialRequests) setSpecialRequests(getStoredSpecialRequests);
   }, []);
   
   useEffect(() => {
@@ -170,12 +170,10 @@ const TicketConfirmation = () => {
 
           {specialRequests && (
             <div className="special-requests">
-              <p><strong>Special Requests:</strong> <br />{getStoredSpecialRequests}</p>
+              <p><strong>Special Requests:</strong> <br />{specialRequests}</p>
               <hr />
             </div>
           )}
-
-      
 
           <div className="barcode-section">
             {barcodeImage && (
