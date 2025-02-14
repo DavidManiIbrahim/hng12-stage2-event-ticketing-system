@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import './Styles/AttendeeDetails.css';
 
 const AttendeeDetails = () => {
@@ -11,6 +12,7 @@ const AttendeeDetails = () => {
   const [email, setEmail] = useState(localStorage.getItem('email') || '');
   const [specialRequest, setSpecialRequest] = useState(localStorage.getItem('specialRequest') || '');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   // Load image preview if it exists in localStorage
   useEffect(() => {
@@ -20,16 +22,29 @@ const AttendeeDetails = () => {
     }
   }, []);
 
-  // Handle file upload and save to local storage
-  const handlePhotoUpload = (event) => {
+  // Handle file upload and save to local storage and upload to Cloudinary
+  const handlePhotoUpload = async (event) => {
     const file = event.target.files[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        setProfilePhoto(reader.result);
-        localStorage.setItem('profilePhoto', reader.result); // Save as base64
-      };
-      reader.readAsDataURL(file);
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('upload_preset', 'ticketGenerator');  // replace with your Cloudinary preset
+
+      setLoading(true);
+      try {
+        const response = await axios.post(
+          `https://api.cloudinary.com/v1_1/dikmotd52/image/upload`, 
+          formData
+        );
+        const photoUrl = response.data.secure_url; // Get the URL of the uploaded image
+        setProfilePhoto(photoUrl);
+        localStorage.setItem('profilePhoto', photoUrl); // Save image URL to localStorage
+        setLoading(false);
+      } catch (error) {
+        console.error("Error uploading image:", error);
+        setError("Failed to upload image. Please try again.");
+        setLoading(false);
+      }
     }
   };
 
@@ -52,6 +67,8 @@ const AttendeeDetails = () => {
     }
 
     console.log("Form submitted:", { name, email, specialRequest, profilePhoto });
+
+    // You can also send this form data to your backend or Cloudinary as needed
 
     navigate('/tickets');
   };
@@ -114,6 +131,8 @@ const AttendeeDetails = () => {
         </div>
 
         {error && <p className="error-message">{error}</p>}
+
+        {loading && <p className="loading-message">Uploading...</p>}
 
         <div className="buttons">
           <button type="button" className="back" onClick={() => navigate('/')}>

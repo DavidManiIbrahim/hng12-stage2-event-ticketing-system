@@ -1,18 +1,26 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; 
 import './Styles/TicketSelection.css'; 
 
 const TicketSelection = () => {
-  const [selectedTicketType, setSelectedTicketType] = useState('free'); 
+  const [selectedTicketType, setSelectedTicketType] = useState('free');
   const [numTickets, setNumTickets] = useState(1);
   const [error, setError] = useState('');
-  const navigate = useNavigate(); // Initialize navigation
+  const navigate = useNavigate();
 
   const ticketTypes = [
     { type: 'free', label: 'Free', price: 0, availability: 20 },
     { type: 'vip', label: 'VIP Access', price: 150, availability: 20 },
-    { type: 'vvip', label: 'VVIP Access', price: 150, availability: 20 },
+    { type: 'vvip', label: 'VVIP Access', price: 250, availability: 20 },
   ];
+
+  // Load the number of tickets from localStorage when the component mounts
+  useEffect(() => {
+    const storedNumTickets = localStorage.getItem('numTickets');
+    if (storedNumTickets) {
+      setNumTickets(Number(storedNumTickets));
+    }
+  }, []);
 
   const handleTicketTypeChange = (type) => {
     setSelectedTicketType(type);
@@ -26,6 +34,7 @@ const TicketSelection = () => {
       setError('Please select at least one ticket.');
     } else {
       setError('');
+      localStorage.setItem('numTickets', value); // Save the number of tickets to localStorage
     }
   };
 
