@@ -1,45 +1,55 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';  // Import useNavigate hook for navigation
 import './Styles/TicketConfirmation.css';
 import { jsPDF } from 'jspdf';
 
 const TicketConfirmation = () => {
-  const [userPhoto, setUserPhoto] = useState(null); // The state for storing user photo
+  const [userPhoto, setUserPhoto] = useState(null); // State for storing user photo
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [numTickets, setNumTickets] = useState(1);
+  const [ticketType, setTicketType] = useState('');  // State for storing the ticket type
 
-  // Fetch the image from the API (Cloudinary or your API) and set it in the state
+  // Initialize navigate hook for navigation
+  const navigate = useNavigate();
+
+  // Fetch the user details (name, email, and photo) and ticket type from localStorage
   useEffect(() => {
     const storedPhotoUrl = localStorage.getItem('profilePhoto');
-    const storedName = localStorage.getItem('userName');
-    const storedEmail = localStorage.getItem('userEmail');
+    const storedName = localStorage.getItem('name'); // Make sure this key matches with the one used in AttendeeDetails
+    const storedEmail = localStorage.getItem('email'); // Make sure this key matches with the one used in AttendeeDetails
+    const storedTicketType = localStorage.getItem('ticketType');  // Fetch the ticket type from localStorage
     
-    if (storedName) setUserName(storedName);
-    if (storedEmail) setUserEmail(storedEmail);
+    if (storedName) setUserName(storedName);  // Set the user name from localStorage
+    if (storedEmail) setUserEmail(storedEmail); // Set the user email from localStorage
     
-    // Fetching the profile photo URL from localStorage and setting it to state
+    // Set the profile photo URL from localStorage
     if (storedPhotoUrl) {
-      // You can fetch the image from the API using the URL stored in localStorage if needed
-      setUserPhoto(storedPhotoUrl);
+      setUserPhoto(storedPhotoUrl);  // Set the user photo from localStorage
     }
 
     const storedNumTickets = localStorage.getItem('numTickets');
     if (storedNumTickets) {
-      setNumTickets(Number(storedNumTickets)); 
+      setNumTickets(Number(storedNumTickets)); // Set the number of tickets
     }
-  }, []);
+
+    // Set the ticket type from localStorage
+    if (storedTicketType) {
+      setTicketType(storedTicketType);  // Set the ticket type from localStorage
+    }
+
+  }, []); // Empty dependency array means this will only run once when the component is mounted
 
   const ticketDetails = {
     eventName: 'Techember Fest "25',
     location: '04 menms rood, Ikoy, Lagos',
     date: 'March 15, 2025',
     time: '7:00 PM',
-    ticketType: 'VIP',
+    ticketType: ticketType || 'VIP', // Use the ticket type from localStorage or fallback to 'VIP'
     specialRequests: 'NE 7 Or the users sad story they write in thers gets the whole space, Max of three rows',
     ticketNumber: '234567 891026',
   };
 
-  // Download PDF with ticket details
   const handleDownloadTicket = () => {
     const doc = new jsPDF();
 
@@ -65,6 +75,11 @@ const TicketConfirmation = () => {
 
     // Save the PDF
     doc.save('ticket.pdf');
+  };
+
+  // Handle "Book Another Ticket" navigation
+  const handleBookAnotherTicket = () => {
+    navigate('/'); // Navigate to the event page where the user can book another ticket
   };
 
   return (
@@ -112,7 +127,7 @@ const TicketConfirmation = () => {
         </div>
 
         <div className="buttons">
-          <button className="book-another-button">Book Another Ticket</button>
+          <button className="book-another-button" onClick={handleBookAnotherTicket}>Book Another Ticket</button>
           <button className="download-ticket-button" onClick={handleDownloadTicket}>
             Download Ticket
           </button>
