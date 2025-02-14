@@ -18,7 +18,7 @@ function App() {
         <Route path='/tickets' element={<TicketConfirmation />} />
       </Routes>
    
-   {/* <TicketConfirmation /> */}
+ 
     </div>
   );
 }
