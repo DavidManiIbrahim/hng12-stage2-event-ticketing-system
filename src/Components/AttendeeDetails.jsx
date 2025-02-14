@@ -22,13 +22,14 @@ const AttendeeDetails = () => {
     }
   }, []);
 
-  // Handle file upload and save to local storage and upload to Cloudinary
+  
   const handlePhotoUpload = async (event) => {
     const file = event.target.files[0];
     if (file) {
       const formData = new FormData();
       formData.append('file', file);
-      formData.append('upload_preset', 'ticketGenerator');  // replace with your Cloudinary preset
+      formData.append('upload_preset', 'ticketGenerator');  
+      formData.append('cloud_name', 'dikmotd52');  
 
       setLoading(true);
       try {
@@ -36,9 +37,10 @@ const AttendeeDetails = () => {
           `https://api.cloudinary.com/v1_1/dikmotd52/image/upload`, 
           formData
         );
-        const photoUrl = response.data.secure_url; // Get the URL of the uploaded image
+        const photoUrl = response.data.secure_url; 
         setProfilePhoto(photoUrl);
-        localStorage.setItem('profilePhoto', photoUrl); // Save image URL to localStorage
+        console.log(photoUrl)
+        localStorage.setItem('profilePhoto', photoUrl); 
         setLoading(false);
       } catch (error) {
         console.error("Error uploading image:", error);
@@ -52,7 +54,7 @@ const AttendeeDetails = () => {
     document.getElementById('profilePhoto').click();
   };
 
-  // Save input changes to state & localStorage
+
   const handleChange = (setter, key) => (event) => {
     setter(event.target.value);
     localStorage.setItem(key, event.target.value);
@@ -68,7 +70,7 @@ const AttendeeDetails = () => {
 
     console.log("Form submitted:", { name, email, specialRequest, profilePhoto });
 
-    // You can also send this form data to your backend or Cloudinary as needed
+
 
     navigate('/tickets');
   };
@@ -92,7 +94,7 @@ const AttendeeDetails = () => {
               style={{ display: 'none' }} 
             />
             {profilePhoto ? (
-              <img src={profilePhoto} alt="Profile Preview" className="preview-image" />
+              <img src={profilePhoto} alt="Profi111le Preview" className="preview-image" />
             ) : (
               <div className="drag-drop-text">
                 <span className="upload-icon">+</span>
@@ -103,7 +105,7 @@ const AttendeeDetails = () => {
         </div>
 
         <div className="input-group">
-          <label htmlFor="name">Enter your name *</label>
+          <label htmlFor="name">Enter your name </label>
           <input 
             type="text" 
             id="name" 
@@ -113,7 +115,7 @@ const AttendeeDetails = () => {
         </div>
 
         <div className="input-group">
-          <label htmlFor="email">Enter your email *</label>
+          <label htmlFor="email">Enter your email </label>
           <input 
             type="email" 
             id="email" 
@@ -123,7 +125,7 @@ const AttendeeDetails = () => {
         </div>
 
         <div className="input-group">
-          <label htmlFor="specialRequest">Special request?</label>
+          <label htmlFor="specialRequest">Special request (optional)</label>
           <textarea 
             id="specialRequest" 
             value={specialRequest} 

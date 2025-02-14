@@ -14,7 +14,7 @@ const TicketSelection = () => {
     { type: 'vvip', label: 'VVIP Access', price: 250, availability: 20 },
   ];
 
-  // Load the number of tickets from localStorage when the component mounts
+
   useEffect(() => {
     const storedNumTickets = localStorage.getItem('numTickets');
     if (storedNumTickets) {
@@ -34,7 +34,7 @@ const TicketSelection = () => {
       setError('Please select at least one ticket.');
     } else {
       setError('');
-      localStorage.setItem('numTickets', value); // Save the number of tickets to localStorage
+      localStorage.setItem('numTickets', value); 
     }
   };
 
@@ -43,7 +43,8 @@ const TicketSelection = () => {
       setError('Please select at least one ticket.');
       return;
     }
-    navigate('/details'); // Navigate to the next page
+    navigate('/details'); 
+    
   };
 
   return (
@@ -51,7 +52,7 @@ const TicketSelection = () => {
       <div className="ticket-selection-panel">
         <p className='step'>Step 1/3</p>
         <div className="head">
-          <p className='ticket-selection-text'>Ticket Selection</p>
+          <h3 className='ticket-selection-text'>Ticket Selection</h3>
           <div className="line-one"></div>
           <div className="line-two"></div>
         </div>
@@ -92,7 +93,6 @@ const TicketSelection = () => {
           </select>
         </div>
 
-        {/* Display Error Message */}
         {error && <p className="error-message">{error}</p>}
 
         <div className="buttons">

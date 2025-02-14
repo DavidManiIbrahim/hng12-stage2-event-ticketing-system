@@ -11,7 +11,7 @@ const Navbar = () => {
           <a href="#" className="navbar-brand">
        
             <img src={logo} alt="Logo" className="navbar-logo" /> 
-            {/* <span className="navbar-brand-text"></span>  */}
+           
           </a>
         </div>
         <div className="navbar-center">
@@ -23,7 +23,7 @@ const Navbar = () => {
               <Link to="/" href="#" className="nav-link">Events</Link>
             </li>
             <li className="nav-item">
-              <Link to="/tickets" className="nav-link">My Tickets</Link>
+              <Link className="nav-link">My Tickets</Link>
             </li>
             <li className="nav-item">
               <Link to="/about-project" className="nav-link">About Project</Link>
