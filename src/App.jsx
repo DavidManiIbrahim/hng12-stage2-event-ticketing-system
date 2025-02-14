@@ -1,10 +1,10 @@
 import React from 'react';
-import TicketSelection from './Components/TicketSelection';
 import './App.css';
 import { Routes, Route } from "react-router-dom"
+import Navbar from './Components/Navbar';
+import TicketSelection from './Components/TicketSelection';
 import AttendeeDetails from './Components/AttendeeDetails';
 import TicketConfirmation from './Components/TicketConfirmation';
-import Navbar from './Components/Navbar';
 import AboutProject from './Components/AboutProject';
 
 function App() {
