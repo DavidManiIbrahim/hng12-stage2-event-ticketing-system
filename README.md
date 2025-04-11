@@ -1,6 +1,6 @@
 
 
-🎟️ Event Ticketing System
+🎟️## Event Ticketing System
 
 A dynamic and responsive Event Ticketing System built with React. Users can browse events, register, and receive digital tickets — powered by an API backend for real-time data handling.
 
